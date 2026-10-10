@@ -2,7 +2,7 @@
 {{< contact title="..." photo="/images/x.jpg" form="..." >}}text{{< /contact >}}
 photo = round photo beside the text; image = tall photo instead. */ -}}
 <section class="contact{{ if .Get "photo" }} contact-photo{{ end }}">
-  {{ with .Get "title" }}<h2>{{ . }}</h2>{{ end }}
+  {{ with .Get "title" }}<h2 class="section-title">{{ . }}</h2>{{ end }}
   <div class="contact-grid">
     {{ with .Get "photo" }}<img class="contact-round fade" src="{{ partial "url.html" . }}" alt="{{ $.Get "alt" | default "גולדה גלעדי" }}" loading="lazy">{{ end }}
     {{ with .Get "image" }}<img class="contact-image fade" src="{{ partial "url.html" . }}" alt="{{ $.Get "alt" }}" loading="lazy">{{ end }}
