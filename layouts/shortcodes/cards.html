@@ -1,0 +1,16 @@
+{{- /* Linked image cards, one per line: image | caption | link. Usage:
+{{< cards >}}
+/images/a.jpg | עיצוב קלאסי | /עיצוב-קלאסי/
+{{< /cards >}} */ -}}
+<div class="cards">
+  {{- range split (strings.TrimSpace .Inner) "\n" }}
+  {{- $line := strings.TrimSpace . }}
+  {{- if $line }}
+  {{- $p := split $line "|" }}
+  <a class="card" href="{{ partial "url.html" (strings.TrimSpace (index $p 2)) }}">
+    <img src="{{ partial "url.html" (strings.TrimSpace (index $p 0)) }}" alt="{{ strings.TrimSpace (index $p 1) }}" loading="lazy">
+    <span>{{ strings.TrimSpace (index $p 1) }}</span>
+  </a>
+  {{- end }}
+  {{- end }}
+</div>

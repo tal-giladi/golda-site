@@ -1,0 +1,10 @@
+{{- /* Full-width banner. Usage:
+{{< hero image="/images/x.jpg" title="..." button="..." link="..." >}}text{{< /hero >}} */ -}}
+<section class="hero full" style="background-image:url('{{ partial "url.html" (.Get "image") }}')">
+  <div class="hero-inner">
+    <p class="hero-phone"><a href="{{ site.Params.phoneLink }}"><bdi dir="ltr">{{ site.Params.phone }}</bdi></a></p>
+    {{ with .Get "title" }}<h1>{{ . }}</h1>{{ end }}
+    {{ with .Inner }}<p class="hero-text">{{ . | strings.TrimSpace | $.Page.RenderString }}</p>{{ end }}
+    {{ with .Get "button" }}<a class="btn" href="{{ partial "url.html" ($.Get "link" | default "/צור-קשר/") }}">{{ . }}</a>{{ end }}
+  </div>
+</section>

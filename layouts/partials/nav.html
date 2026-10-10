@@ -1,0 +1,7 @@
+<ul class="nav">
+  {{- $current := . }}
+  {{- range site.Menus.main }}
+  {{- $href := .URL }}
+  <li><a href="{{ $href }}"{{ if eq $href $current.RelPermalink }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+  {{- end }}
+</ul>

@@ -1,0 +1,24 @@
+{{- /* Contact block: text, WhatsApp/phone/email and (if formAction is set in hugo.toml) a form. Usage:
+{{< contact title="..." form="..." image="/images/x.jpg" >}}text{{< /contact >}} */ -}}
+<section class="contact">
+  <div class="contact-info">
+    {{ with .Get "title" }}<h2>{{ . }}</h2>{{ end }}
+    {{ .Inner | $.Page.RenderString }}
+    <p class="contact-actions">
+      <a class="btn" href="{{ site.Params.whatsapp }}" target="_blank" rel="noopener">{{ .Get "whatsapp" | default "שלחו הודעת ואטסאפ" }}</a>
+      <a class="btn btn-outline" href="{{ site.Params.phoneLink }}"><bdi dir="ltr">{{ site.Params.phone }}</bdi></a>
+      <a class="btn btn-outline" href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a>
+    </p>
+    {{ with site.Params.formAction }}
+    <form class="contact-form" action="{{ . }}" method="post">
+      <h3>{{ $.Get "form" | default "השאירו פרטים ואחזור אליכם בהקדם" }}</h3>
+      <label>שם<input name="name" autocomplete="name"></label>
+      <label>אימייל *<input name="email" type="email" required autocomplete="email" dir="ltr"></label>
+      <label>טלפון<input name="phone" type="tel" autocomplete="tel" dir="ltr"></label>
+      <label>הודעה<textarea name="message" rows="4"></textarea></label>
+      <button class="btn" type="submit">שליחה</button>
+    </form>
+    {{ end }}
+  </div>
+  {{ with .Get "image" }}<img class="contact-image" src="{{ partial "url.html" . }}" alt="{{ $.Get "alt" }}" loading="lazy">{{ end }}
+</section>

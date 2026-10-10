@@ -1,0 +1,4 @@
+{{- /* Site-relative URL that also works when the site lives under a sub-path (e.g. user.github.io/repo/). */ -}}
+{{- $u := . -}}
+{{- if hasPrefix $u "/" -}}{{- $u = strings.TrimPrefix "/" $u | relURL -}}{{- end -}}
+{{- return $u -}}

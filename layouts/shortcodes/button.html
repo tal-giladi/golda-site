@@ -1,0 +1,2 @@
+{{- /* Usage: {{< button link="/צור-קשר/" >}}טקסט{{< /button >}} */ -}}
+<p class="btn-row"><a class="btn" href="{{ partial "url.html" (.Get "link") }}">{{ .Inner | strings.TrimSpace }}</a></p>

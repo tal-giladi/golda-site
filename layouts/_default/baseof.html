@@ -1,0 +1,32 @@
+<!doctype html>
+{{- $lang := .Params.lang | default "he" -}}
+{{- $dir := .Params.dir | default "rtl" -}}
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{- if strings.Contains site.BaseURL "github.io" }}
+  <meta name="robots" content="noindex">{{/* preview copy: keep Google on the real domain */}}
+  {{- end }}
+  <title>{{ .Params.seoTitle | default .Title }}</title>
+  <meta name="description" content="{{ .Params.description | default site.Params.description }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <meta property="og:title" content="{{ .Params.seoTitle | default .Title }}">
+  <meta property="og:description" content="{{ .Params.description | default site.Params.description }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  {{- with .Params.image }}<meta property="og:image" content="{{ strings.TrimPrefix "/" . | absURL }}">{{ end }}
+  <link rel="icon" href="{{ partial "url.html" "/images/logo.jpg" }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500&family=Playfair+Display:wght@400&family=Rubik:wght@300;400;600&display=swap">
+  <link rel="stylesheet" href="{{ partial "url.html" "/css/site.css" }}">
+</head>
+<body>
+  {{ partial "header.html" . }}
+  <main lang="{{ $lang }}" dir="{{ $dir }}">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+  <script src="{{ partial "url.html" "/js/site.js" }}" defer></script>
+</body>
+</html>

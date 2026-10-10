@@ -1,0 +1,10 @@
+{{- /* Image next to text. Usage:
+{{< split image="/images/x.jpg" alt="..." >}}
+#### Heading
+Text in markdown
+{{< /split >}}
+Add side="left" to put the image on the other side. */ -}}
+<section class="split{{ if eq (.Get "side") "left" }} split-flip{{ end }}">
+  <img src="{{ partial "url.html" (.Get "image") }}" alt="{{ .Get "alt" }}" loading="lazy">
+  <div class="split-text">{{ .Inner | $.Page.RenderString }}</div>
+</section>

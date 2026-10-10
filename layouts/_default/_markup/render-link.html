@@ -1,0 +1,1 @@
+<a href="{{ partial "url.html" .Destination }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if hasPrefix .Destination "http" }} target="_blank" rel="noopener"{{ end }}>{{ .Text }}</a>

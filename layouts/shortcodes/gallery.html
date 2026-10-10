@@ -1,0 +1,20 @@
+{{- /* Image gallery, one image per line, optional caption after "|". Usage:
+{{< gallery >}}
+/images/a.jpg | caption
+/images/b.jpg
+{{< /gallery >}}
+Use {{< gallery style="masonry" >}} for the mixed-size layout. */ -}}
+<div class="gallery gallery-{{ .Get "style" | default "grid" }}">
+  {{- range split (strings.TrimSpace .Inner) "\n" }}
+  {{- $line := strings.TrimSpace . }}
+  {{- if $line }}
+  {{- $parts := split $line "|" }}
+  {{- $src := partial "url.html" (strings.TrimSpace (index $parts 0)) }}
+  {{- $cap := "" }}{{ if gt (len $parts) 1 }}{{ $cap = strings.TrimSpace (index $parts 1) }}{{ end }}
+  <figure>
+    <a href="{{ $src }}" class="lightbox"><img src="{{ $src }}" alt="{{ $cap }}" loading="lazy"></a>
+    {{ with $cap }}<figcaption>{{ . }}</figcaption>{{ end }}
+  </figure>
+  {{- end }}
+  {{- end }}
+</div>

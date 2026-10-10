@@ -1,0 +1,8 @@
+<header class="site-header">
+  <a class="logo" href="{{ partial "url.html" "/" }}" aria-label="Golda Interiors"><img src="{{ partial "url.html" "/images/logo.jpg" }}" alt="Golda Interiors" width="70" height="70"></a>
+  <details class="nav-toggle">
+    <summary aria-label="תפריט"><span></span><span></span><span></span></summary>
+    {{ partial "nav.html" . }}
+  </details>
+  <nav class="nav-desktop" aria-label="ראשי">{{ partial "nav.html" . }}</nav>
+</header>

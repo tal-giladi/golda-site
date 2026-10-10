@@ -1,0 +1,74 @@
+baseURL = "https://goldainteriors.com/"
+languageCode = "he"
+defaultContentLanguage = "he"
+title = "Golda Interiors"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term", "RSS"]
+
+[params]
+  description = "מעצבת פנים באזור בני ברק והסביבה- הכנת תוכניות בנייה, הלבשת הבית, פיקוח בנייה במהלך השיפוץ"
+  phone = "054-4523437"
+  phoneLink = "tel:+972544523437"
+  whatsapp = "https://wa.me/972544523437"
+  email = "goldagiladi@gmail.com"
+  facebook = "https://www.facebook.com/104092998826831"
+  instagram = "https://www.instagram.com/goldainteriors"
+  # Address that receives the contact form (e.g. a Formspree endpoint). Empty = form is hidden.
+  formAction = ""
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[[menus.main]]
+  name = "ראשי"
+  url = "/"
+  weight = 1
+[[menus.main]]
+  name = "פורטפוליו"
+  url = "/פורטפוליו/"
+  weight = 2
+[[menus.main]]
+  name = "קצת עליי"
+  url = "/קצת-עליי/"
+  weight = 3
+[[menus.main]]
+  name = "צור קשר"
+  url = "/צור-קשר/"
+  weight = 4
+[[menus.main]]
+  name = "בלוג"
+  url = "/blog/"
+  weight = 5
+
+[[menus.footer]]
+  name = "פורטפוליו"
+  url = "/פורטפוליו/"
+  weight = 1
+[[menus.footer]]
+  name = "קצת עליי"
+  url = "/קצת-עליי/"
+  weight = 2
+[[menus.footer]]
+  name = "צור קשר"
+  url = "/צור-קשר/"
+  weight = 3
+[[menus.footer]]
+  name = "בלוג"
+  url = "/blog/"
+  weight = 4
+[[menus.footer]]
+  name = "עיצוב קלאסי"
+  url = "/עיצוב-קלאסי/"
+  weight = 5
+[[menus.footer]]
+  name = "עיצוב מודרני"
+  url = "/עיצוב-מודרני/"
+  weight = 6
+[[menus.footer]]
+  name = "Дизайнер Израиль"
+  url = "/дизайнер-израиль/"
+  weight = 7
+[[menus.footer]]
+  name = "עיצוב לציבור החרדי והדתי"
+  url = "/עיצוב-לציבור-החרדי-והדתי/"
+  weight = 8

@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="page">
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  <div class="post-list">
+    {{- range .Pages.ByDate.Reverse }}
+    <a class="post-card" href="{{ .RelPermalink }}" lang="{{ .Params.lang | default "he" }}" dir="{{ .Params.dir | default "rtl" }}">
+      {{- with .Params.image }}<img src="{{ partial "url.html" . }}" alt="" loading="lazy">{{ end }}
+      <div>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02.01.2006" }}</time>
+        <h2>{{ .Title }}</h2>
+        <p>{{ .Summary | plainify | truncate 200 }}</p>
+      </div>
+    </a>
+    {{- end }}
+  </div>
+</div>
+{{ end }}
