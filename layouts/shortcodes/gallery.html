@@ -3,18 +3,23 @@
 /images/a.jpg | caption
 /images/b.jpg
 {{< /gallery >}}
-Use {{< gallery style="masonry" >}} for the mixed-size layout. */ -}}
-<div class="gallery gallery-{{ .Get "style" | default "grid" }}">
+style="masonry" = mixed-size layout, style="strip" = one scrolling row. */ -}}
+{{- $style := .Get "style" | default "grid" }}
+<div class="gallery gallery-{{ $style }}{{ if eq $style "strip" }} full{{ end }}">
+  {{- if eq $style "strip" }}<button class="strip-btn strip-prev" type="button" aria-label="הקודם">›</button>{{ end }}
+  <div class="gallery-track">
   {{- range split (strings.TrimSpace .Inner) "\n" }}
   {{- $line := strings.TrimSpace . }}
   {{- if $line }}
   {{- $parts := split $line "|" }}
   {{- $src := partial "url.html" (strings.TrimSpace (index $parts 0)) }}
   {{- $cap := "" }}{{ if gt (len $parts) 1 }}{{ $cap = strings.TrimSpace (index $parts 1) }}{{ end }}
-  <figure>
+  <figure class="fade">
     <a href="{{ $src }}" class="lightbox"><img src="{{ $src }}" alt="{{ $cap }}" loading="lazy"></a>
     {{ with $cap }}<figcaption>{{ . }}</figcaption>{{ end }}
   </figure>
   {{- end }}
   {{- end }}
+  </div>
+  {{- if eq $style "strip" }}<button class="strip-btn strip-next" type="button" aria-label="הבא">‹</button>{{ end }}
 </div>

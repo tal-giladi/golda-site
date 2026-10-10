@@ -1,7 +1,7 @@
-{{- /* Full-width banner. Usage:
+{{- /* Full-width banner with a white box on the photo. Usage:
 {{< hero image="/images/x.jpg" title="..." button="..." link="..." >}}text{{< /hero >}} */ -}}
 <section class="hero full" style="background-image:url('{{ partial "url.html" (.Get "image") }}')">
-  <div class="hero-inner">
+  <div class="hero-box">
     <p class="hero-phone"><a href="{{ site.Params.phoneLink }}"><bdi dir="ltr">{{ site.Params.phone }}</bdi></a></p>
     {{ with .Get "title" }}<h1>{{ . }}</h1>{{ end }}
     {{ with .Inner }}<p class="hero-text">{{ . | strings.TrimSpace | $.Page.RenderString }}</p>{{ end }}

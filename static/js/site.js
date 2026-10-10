@@ -31,3 +31,46 @@ document.addEventListener('click', function (e) {
   show(i);
   document.body.appendChild(box);
 });
+
+// Fade images in as they scroll into view.
+(function () {
+  var items = document.querySelectorAll('.fade');
+  if (!('IntersectionObserver' in window)) { items.forEach(function (el) { el.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+  items.forEach(function (el) { io.observe(el); });
+})();
+
+// Scrolling row: arrow buttons move by most of a screen width.
+document.querySelectorAll('.gallery-strip').forEach(function (strip) {
+  var track = strip.querySelector('.gallery-track');
+  var rtl = getComputedStyle(track).direction === 'rtl';
+  function move(dir) { track.scrollBy({ left: dir * track.clientWidth * 0.8 * (rtl ? -1 : 1), behavior: 'smooth' }); }
+  strip.querySelector('.strip-prev').addEventListener('click', function () { move(-1); });
+  strip.querySelector('.strip-next').addEventListener('click', function () { move(1); });
+});
+
+// Welcome popup on the home page, once per visit.
+(function () {
+  var pop = document.getElementById('welcome-popup');
+  if (!pop) return;
+  try { if (sessionStorage.getItem('popupSeen')) return; } catch (e) {}
+  function close() {
+    pop.classList.remove('open');
+    setTimeout(function () { pop.hidden = true; }, 400);
+    document.removeEventListener('keydown', onKey);
+  }
+  function onKey(e) { if (e.key === 'Escape') close(); }
+  pop.addEventListener('click', function (e) {
+    if (e.target === pop || e.target.classList.contains('popup-close')) close();
+  });
+  setTimeout(function () {
+    pop.hidden = false;
+    requestAnimationFrame(function () { pop.classList.add('open'); });
+    document.addEventListener('keydown', onKey);
+    try { sessionStorage.setItem('popupSeen', '1'); } catch (e) {}
+  }, 1200);
+})();

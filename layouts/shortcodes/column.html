@@ -1,0 +1,4 @@
+<div class="column">
+  {{ with .Get "image" }}<img src="{{ partial "url.html" . }}" alt="{{ $.Get "alt" }}" loading="lazy" class="fade">{{ end }}
+  <div class="column-text">{{ .Inner | $.Page.RenderString }}</div>
+</div>

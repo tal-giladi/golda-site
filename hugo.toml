@@ -16,6 +16,14 @@ disableKinds = ["taxonomy", "term", "RSS"]
   # Address that receives the contact form (e.g. a Formspree endpoint). Empty = form is hidden.
   formAction = ""
 
+# Welcome popup on the home page (shown once per visit). Delete this block to turn it off.
+[params.popup]
+  title = "ברוכים הבאים!"
+  text = "חולמים על בית מעוצב ומדויק לכם? ✨<br>קבעו שיחת ייעוץ חינם"
+  button = "לתיאום שיחת ייעוץ"
+  link = "tel:+972544523437"
+  image = "/images/stock/moodboard.jpg"
+
 [markup.goldmark.renderer]
   unsafe = true
 
